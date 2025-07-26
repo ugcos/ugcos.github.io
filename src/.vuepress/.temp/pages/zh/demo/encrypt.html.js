@@ -1,0 +1,3 @@
+import comp from "D:/Project/blog/ugcos/src/.vuepress/.temp/pages/zh/demo/encrypt.html.vue"
+const data = JSON.parse("{\"path\":\"/zh/demo/encrypt.html\",\"title\":\"密码加密的文章\",\"lang\":\"zh-CN\",\"frontmatter\":{\"icon\":\"lock\",\"category\":[\"使用指南\"],\"tag\":[\"加密\"],\"feed\":false,\"seo\":false,\"head\":[[\"link\",{\"rel\":\"alternate\",\"hreflang\":\"en-us\",\"href\":\"https://mister-hope.github.io/demo/encrypt.html\"}]]},\"git\":{\"createdTime\":1753546917000,\"updatedTime\":1753546917000,\"contributors\":[{\"name\":\"ugcos\",\"username\":\"\",\"email\":\"ugcosbot@gmail.com\",\"commits\":1}]},\"readingTime\":{\"minutes\":0.51,\"words\":154},\"filePathRelative\":\"zh/demo/encrypt.md\"}")
+export { comp, data }
