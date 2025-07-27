@@ -5,31 +5,41 @@ on:
     branches:
       - master  # 如果你使用 master 就写 master
 
+permissions:
+  contents: write  # 允许写入内容
+
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # 获取完整的提交历史
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: pnpm
 
-      - name: Install dependencies
-        run: 
-          corepack enable
-          pnpm install
+      - name: Install deps #安装依赖
+        run: pnpm install --frozen-lockfile
 
       - name: Build VuePress site
-        run: pnpm docs:build
+        env:
+          NODE_OPTIONS: --max-old-space-size=8192
+        run: 
+          pnpm docs:build
+          
 
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+        uses: crazy-max/ghaction-github-pages@v4
         env:
           github_token: ${{ secrets.GITHUB_TOKEN }}
         with:
-          branch: blog_pages
-          publish_dir: src/.vuepress/dist
+          target_branch: blog-pages
+          build_dir: docs/.vuepress/dist
